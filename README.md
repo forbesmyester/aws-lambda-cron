@@ -117,7 +117,7 @@ resource "aws_lambda_permission" "allow_cloudwatch" {
 }
 ```
 
-To run it, all you need to do is put a (or the) JS file within a zip file and run `terraform apply -var aws_profile=[your_profile_name_here]` and it will deploy everything for you.
+To run it, all you need to do is put a (or the) JS file within a zip file and run `terraform apply -var aws_profile=$AWS_DEFAULT_PROFILE` and it will deploy everything for you.
 
 ### Where's the source?
 
