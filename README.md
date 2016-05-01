@@ -20,15 +20,21 @@ Firstly click the "Get Started Now" button on the initial Lambda screen (the ima
 
 ### Picking a BluePrint
 
-![We use a lot of SQS queues and I think that putting an item onto a queue would be better than a HTTP request as if the scheduled item fails to be called or times out the item will stay in the queue and we will notice. Therefore I picked something that would bring in the required AWS libraries as a starting point.](./img/1.png)
+![](./img/1.png)
+
+We use a lot of SQS queues and I think that putting an item onto a queue would be better than a HTTP request as if the scheduled item fails to be called or times out the item will stay in the queue and we will notice. Therefore I picked something that would bring in the required AWS libraries as a starting point.
 
 ### Scheduling
 
-![This is where the Cron bit comes in, note the fact it comes from Cloudwatch that is important later. You can put full Cron lines in there but the syntax is [slightly strange](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ScheduledEvents.html#CronExpressions)](./img/2.png)
+![](./img/2.png)
+
+This is where the Cron bit comes in, note the fact it comes from Cloudwatch that is important later. You can put full Cron lines in there but the syntax is [slightly strange](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ScheduledEvents.html#CronExpressions)
 
 ### The Code
 
-![Now we get to write some code. There is support for rudimentary testing etc, but I wouldn't want to do development here... I read breifly about the "Role" and it sounds really interesting but it is a bit too opaque for me right now to write about it... Did you notice there are no credentials for writing to the SQS queue? For the time being I just created one based on "Basic execution role"](./img/3.png)
+![](./img/3.png)
+
+Now we get to write some code. There is support for rudimentary testing etc, but I wouldn't want to do development here... I read breifly about the "Role" and it sounds really interesting but it is a bit too opaque for me right now to write about it... Did you notice there are no credentials for writing to the SQS queue? For the time being I just created one based on "Basic execution role"
 
 ### Ready to Deploy!
 
