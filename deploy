@@ -1,0 +1,6 @@
+#!/bin/bash
+cd minutely_push_to_sqs
+zip -9 minutely_push_to_sqs.zip index.js
+mv minutely_push_to_sqs.zip ../
+cd ..
+terraform apply -var aws_profile=keyboardwritescode

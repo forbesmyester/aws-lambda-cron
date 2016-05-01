@@ -1,0 +1,6 @@
+terraform-bin
+terraform.tfstate
+terraform.tfstate.backup
+.terraform
+README.html
+minutely_push_to_sqs.zip
