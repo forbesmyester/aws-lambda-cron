@@ -22,19 +22,21 @@ Firstly click the "Get Started Now" button on the initial Lambda screen (the hea
 
 ![](./img/1.png)
 
-We use a lot of SQS queues and I think that putting an item onto a queue would be better than a HTTP request as if the scheduled item fails to be called or times out the item will stay in the queue and we will notice. Therefore I picked something that would bring in the required AWS libraries as a starting point.
+We use a lot of SQS queues and for now, while I'm just dipping my toes into Lambda I will have the actual work carried out by a worker and just use Lambda kick it off when the time comes. So the task becomes putting an item into an SQS queue when the correct time comes. Because of this I picked something that would bring in the required AWS libraries as a starting point to base my code on.
 
 ### Scheduling
 
 ![](./img/2.png)
 
-This is where the Cron bit comes in, note the fact it comes from Cloudwatch that is important later. You can put full Cron lines in there but the syntax is [slightly strange](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ScheduledEvents.html#CronExpressions).
+This is where the Cron bit comes in, note the fact it comes from Cloudwatch that is important later. You can also put full Cron lines in there but the syntax is [slightly strange](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ScheduledEvents.html#CronExpressions).
 
 ### The Code
 
 ![](./img/3.png)
 
-Now we get to write some code. There is support for rudimentary testing etc, but I wouldn't want to do development here... I read breifly about the "Role" and it sounds really interesting but it is a bit too opaque for me right now to write about it... Did you notice there are no credentials for writing to the SQS queue? For the time being I just created one based on "Basic execution role".
+Now we get to write some code. There is support for rudimentary testing etc in the UI but I wouldn't want to do development here... I read breifly about the "Role" and it sounds really interesting but it is a bit too opaque for me right now to write about... For the time being I just created one based on "Basic execution role".
+
+For the observant people did you notice there are no credentials for writing to the SQS queue? I suspect this is because of the Role, I will need to come back and investigate this, perhaps in a different blog post.
 
 ### Ready to Deploy!
 
@@ -50,7 +52,7 @@ After my [investigations](http://keyboardwritescode.blogspot.com/2016/04/investi
 
 ### The problems
 
-My biggest problem was that I associated the scheduled running of a Lambda with the Lambda product itself as you configure it within the Lambda wizard when doing it manually. Seems this is not really the case and attempting to use [`aws_lambda_event_source_mapping`](https://www.terraform.io/docs/providers/aws/r/lambda_event_source_mapping.html) got me nowhere.
+My biggest problem was that I associated the scheduled running of a Lambda with the Lambda product itself as you configure it within the wizard when doing it manually. Seems this is not really the case and attempting to use [`aws_lambda_event_source_mapping`](https://www.terraform.io/docs/providers/aws/r/lambda_event_source_mapping.html) got me nowhere.
 
 ### The solution
 
