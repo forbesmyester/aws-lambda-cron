@@ -3,4 +3,6 @@ cd minutely_push_to_sqs
 zip -9 minutely_push_to_sqs.zip index.js
 mv minutely_push_to_sqs.zip ../
 cd ..
+terraform taint -var aws_profile=keyboardwritescode aws_cloudwatch_event_target.fire_every_minute
+terraform taint -var aws_profile=keyboardwritescode aws_lambda_function.fire_every_minute 
 terraform apply -var aws_profile=keyboardwritescode

@@ -7,7 +7,13 @@ provider "aws" {
 
 resource "aws_iam_role" "iam_for_lambda" {
     name = "iam_for_lambda"
-    assume_role_policy = "${file("./iam_for_lamda.json")}"
+    assume_role_policy = "${file("./iam_for_lambda.json")}"
+}
+
+resource "aws_iam_role_policy" "iam_for_lambda" {
+    name = "iam_for_lambda_policy"
+    role = "${aws_iam_role.iam_for_lambda.id}"
+    policy = "${file("./iam_for_lambda_policy.json")}"
 }
 
 resource "aws_cloudwatch_event_rule" "fire_every_minute" {
